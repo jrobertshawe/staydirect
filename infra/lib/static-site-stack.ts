@@ -1,6 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import { Construct } from 'constructs';
 import * as path from 'path';
 
@@ -22,18 +24,33 @@ export class StaticSiteStack extends cdk.Stack {
       autoDeleteObjects: true,
     });
 
+    const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
+      defaultBehavior: {
+        origin: new origins.S3StaticWebsiteOrigin(siteBucket),
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+      },
+      defaultRootObject: 'index.html',
+    });
+
     new s3deploy.BucketDeployment(this, 'DeploySite', {
       sources: [
         s3deploy.Source.asset(path.join(__dirname, '..', '..'), {
-          exclude: ['infra', 'infra/**', 'node_modules', '*.zip'],
+          exclude: ['infra', 'infra/**', 'node_modules', '*.zip', '.git', '.git/**', '.claude', '.claude/**'],
         }),
       ],
       destinationBucket: siteBucket,
+      distribution,
+      distributionPaths: ['/*'],
     });
 
     new cdk.CfnOutput(this, 'WebsiteURL', {
       value: siteBucket.bucketWebsiteUrl,
-      description: 'StayDirect website URL',
+      description: 'StayDirect website URL (HTTP)',
+    });
+
+    new cdk.CfnOutput(this, 'CloudFrontURL', {
+      value: `https://${distribution.distributionDomainName}`,
+      description: 'StayDirect website URL (HTTPS)',
     });
   }
 }

@@ -1303,7 +1303,7 @@
     <div>
       <div class="booking-card">
         <div class="booking-price-row">
-          <div class="booking-price">$495 <span class="period">/night</span></div>
+          <div class="booking-price">$1,200 <span class="period">/night</span></div>
           <div class="no-fee-badge">0% Service Fee</div>
         </div>
 
@@ -1356,12 +1356,12 @@
         <!-- COST BREAKDOWN -->
         <div class="cost-breakdown" id="costBreakdown">
           <div class="cost-row">
-            <span class="label">$495 x 5 nights</span>
-            <span class="value">$2,475</span>
+            <span class="label">$1,200 x 5 nights</span>
+            <span class="value">$6,000</span>
           </div>
           <div class="cost-row">
             <span class="label">Cleaning fee</span>
-            <span class="value">$195</span>
+            <span class="value">$350</span>
           </div>
           <div class="cost-row">
             <span class="label">Service fee</span>
@@ -1369,15 +1369,15 @@
           </div>
           <div class="cost-row" id="escrowRow">
             <span class="label">Escrow protection (1.5%)</span>
-            <span class="value" id="escrowAmount">$31.73</span>
+            <span class="value" id="escrowAmount">$95.25</span>
           </div>
           <div class="cost-row total">
             <span class="label">Total</span>
-            <span class="value" id="totalAmount">$2,146.73</span>
+            <span class="value" id="totalAmount">$6,445.25</span>
           </div>
           <div class="cost-row savings">
             <span class="label">You save vs. competitors</span>
-            <span class="value" id="savingsAmount">$268.27</span>
+            <span class="value" id="savingsAmount">$856.75</span>
           </div>
         </div>
 
@@ -1395,15 +1395,15 @@
           <h4>This stay on other platforms</h4>
           <div class="comparison-row">
             <span class="platform">Competitor A (with fees)</span>
-            <span class="price theirs">$3,049</span>
+            <span class="price theirs">$7,302</span>
           </div>
           <div class="comparison-row">
             <span class="platform">Competitor B (with fees)</span>
-            <span class="price theirs">$3,015</span>
+            <span class="price theirs">$7,188</span>
           </div>
           <div class="comparison-row">
             <span class="platform" style="font-weight: 600; color: var(--accent-dark);">StayDirect</span>
-            <span class="price ours" id="comparisonOurs">$2,146.73</span>
+            <span class="price ours" id="comparisonOurs">$6,445.25</span>
           </div>
         </div>
       </div>
@@ -1430,12 +1430,12 @@
     const savingsAmount = document.getElementById('savingsAmount');
     const comparisonOurs = document.getElementById('comparisonOurs');
 
-    const baseNightly = 495;
+    const baseNightly = 1200;
     const nights = 5;
-    const cleaning = 195;
+    const cleaning = 350;
     const subtotal = (baseNightly * nights) + cleaning;
     const escrowRate = 0.015;
-    const competitorPrice = 3049;
+    const competitorPrice = 7302;
 
     function updateBooking() {
       const escrowOn = escrowCheck.checked;
