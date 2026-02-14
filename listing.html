@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whare Tui Lodge — StayDirect Listing</title>
+  <title>StayDirect Listing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -1002,6 +1002,41 @@
       color: var(--accent-dark);
     }
 
+    /* ───── ALL PHOTOS GRID ───── */
+    .all-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--gray-200);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card .photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 1.5rem 0.75rem 0.5rem;
+    }
+
     /* ───── RESPONSIVE ───── */
     @media (max-width: 900px) {
       .listing-container {
@@ -1029,6 +1064,7 @@
 
       .amenities-grid { grid-template-columns: 1fr; }
       .trust-metrics { grid-template-columns: 1fr; }
+      .all-photos-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -1039,374 +1075,36 @@
     <a href="index.html" class="nav-brand">Stay<span>Direct</span></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="index.html#math">The Math</a>
-      <a href="index.html#pricing">Pricing</a>
+      <a href="host.html#math">Compare Platforms</a>
+      <a href="host.html#pricing">Pricing</a>
       <a href="#" class="btn btn-primary">List Your Property</a>
     </div>
   </nav>
 
   <!-- GALLERY -->
-  <div class="gallery">
-    <div class="gallery-img">
-      <img src="https://images.unsplash.com/photo-1529023971088-2d8a13c1d937?w=1200&q=80" alt="Lake Wanaka with Southern Alps mountain backdrop">
-      <div class="gallery-badge">
-        <span class="dot"></span>
-        Direct Listing
-      </div>
-    </div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Lodge interior with large windows and warm lighting"></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1547743803-bbba9d982c9e?w=800&q=80" alt="The famous Wanaka Tree in Lake Wanaka"></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1699575947488-30f08e71896b?w=800&q=80" alt="Native New Zealand bush walking track"></div>
-    <div class="gallery-img"><img src="https://images.unsplash.com/photo-1696860741307-72ccbb7826da?w=800&q=80" alt="Outdoor hot tub with mountain views"></div>
-  </div>
+  <div class="gallery" id="gallery"></div>
 
   <!-- LISTING CONTENT -->
   <div class="listing-container">
 
     <!-- LEFT COLUMN -->
     <div class="listing-details">
-
-      <div class="listing-header">
-        <div>
-          <h1>Whare Tui Lodge &mdash; Lakefront Retreat</h1>
-          <div class="listing-meta">
-            <span class="rating" style="color: var(--accent-dark);">97% Listing Accuracy &middot; 68 verified check-ins</span>
-            <span>Glendhu Bay, Wanaka, Otago, New Zealand</span>
-          </div>
-        </div>
-        <div class="direct-badge">Verified Direct Owner</div>
-      </div>
-
-      <div class="listing-specs">
-        <div class="spec">
-          <span class="label">Guests</span>
-          <span class="value">12</span>
-        </div>
-        <div class="spec">
-          <span class="label">Bedrooms</span>
-          <span class="value">6</span>
-        </div>
-        <div class="spec">
-          <span class="label">Bathrooms</span>
-          <span class="value">7</span>
-        </div>
-        <div class="spec">
-          <span class="label">Type</span>
-          <span class="value">Entire Lodge</span>
-        </div>
-        <div class="spec">
-          <span class="label">Min Stay</span>
-          <span class="value">3 nights</span>
-        </div>
-      </div>
-
-      <!-- HOST PROFILE -->
-      <div class="host-profile">
-        <div class="host-avatar">
-          &#129489;
-          <div class="verified-check">&#10003;</div>
-        </div>
-        <div class="host-info">
-          <h3>Tom &amp; Aroha Mitchell</h3>
-          <div class="host-badges">
-            <span class="host-badge owner">Verified Direct Owner</span>
-            <span class="veteran-badge">&#127942; Verified Veteran Host &middot; 200+ stays</span>
-            <span class="host-badge">Responds in &lt;45m</span>
-          </div>
-          <p>We bought this former sheep station in 2003 and spent two decades turning it into a lodge. Born and raised in Otago &mdash; Aroha grew up in Cromwell, I'm from Dunedin. We manage the property ourselves, no management company, no agency. You deal with us.</p>
-          <p class="host-contact-hint">Book directly and communicate with Tom &amp; Aroha throughout your stay.</p>
-        </div>
-      </div>
-
-      <!-- TRUST SCORE CARD -->
-      <div class="trust-score-card">
-        <div class="trust-score-header">
-          <h2>Trust Score</h2>
-          <div class="trust-score-badge">&#128737; 97</div>
-        </div>
-        <div class="trust-metrics">
-          <div class="trust-metric">
-            <div class="metric-value green">100%</div>
-            <div class="metric-label">Escrow Success</div>
-          </div>
-          <div class="trust-metric">
-            <div class="metric-value">&lt;38m</div>
-            <div class="metric-label">Avg Response</div>
-          </div>
-          <div class="trust-metric">
-            <div class="metric-value green">97%</div>
-            <div class="metric-label">Listing Accuracy</div>
-          </div>
-        </div>
-        <div class="trust-bar-row">
-          <span class="trust-bar-label">Escrow success</span>
-          <div class="trust-bar-track">
-            <div class="trust-bar-fill green" style="width: 100%;"></div>
-          </div>
-          <span class="trust-bar-value">68/68</span>
-        </div>
-        <div class="trust-bar-row" style="border-top: none; padding-top: 0.5rem; margin-top: 0;">
-          <span class="trust-bar-label">Response time</span>
-          <div class="trust-bar-track">
-            <div class="trust-bar-fill blue" style="width: 95%;"></div>
-          </div>
-          <span class="trust-bar-value">38m</span>
-        </div>
-        <div class="trust-bar-row" style="border-top: none; padding-top: 0.5rem; margin-top: 0;">
-          <span class="trust-bar-label">Guest checklists</span>
-          <div class="trust-bar-track">
-            <div class="trust-bar-fill green" style="width: 97%;"></div>
-          </div>
-          <span class="trust-bar-value">97%</span>
-        </div>
-      </div>
-
-      <!-- DESCRIPTION -->
-      <div class="listing-section">
-        <h2>About This Property</h2>
-        <p>
-          Whare Tui Lodge sits on the shores of Lake Wanaka at Glendhu Bay, with uninterrupted views of the Southern Alps and Mt Aspiring National Park. Built on a former sheep station dating to the 1870s, we transformed the land over two decades &mdash; planting over 8,000 trees including silver birch, kowhai, native flax, and toi-toi alongside the original beech forest.
-        </p>
-        <p style="margin-top: 0.75rem;">
-          The architecture draws on clean timber-and-glass design &mdash; floor-to-ceiling double-glazed windows frame the lake and mountains from every room. Six spacious suites each have en-suite bathrooms with underfloor heating, walk-in rain showers, and deep soaking tubs positioned with views of the ranges. The open-plan living area centres around a stone fireplace, with the chef's kitchen opening directly onto the outdoor entertaining deck.
-        </p>
-        <p style="margin-top: 0.75rem;">
-          This is our home. We converted it to exclusive-use because we believe the best way to experience Wanaka is with the whole lodge to yourself &mdash; not room-by-room in a hotel. Aroha handles the itineraries and local tips, I sort the logistics. No front desk, no corporate script. Just two Kiwis who know this place inside and out.
-        </p>
-      </div>
-
-      <!-- AMENITIES -->
-      <div class="listing-section">
-        <h2>Amenities</h2>
-        <div class="amenities-grid">
-          <div class="amenity"><div class="icon">&#9832;</div> Outdoor hot tub (lakeside, mountain views)</div>
-          <div class="amenity"><div class="icon">&#128293;</div> Stone fireplace in main living area</div>
-          <div class="amenity"><div class="icon">&#127859;</div> Chef's kitchen (or private chef on request)</div>
-          <div class="amenity"><div class="icon">&#127863;</div> Guest bar &amp; wine cellar</div>
-          <div class="amenity"><div class="icon">&#128246;</div> High-speed WiFi &amp; Sky TV throughout</div>
-          <div class="amenity"><div class="icon">&#127921;</div> Billiards room with full-size snooker table</div>
-          <div class="amenity"><div class="icon">&#9968;</div> Ski storage &amp; drying room</div>
-          <div class="amenity"><div class="icon">&#128663;</div> Free parking (4 vehicles)</div>
-          <div class="amenity"><div class="icon">&#127860;</div> Outdoor deck with chimenea &amp; gas BBQ</div>
-          <div class="amenity"><div class="icon">&#128716;</div> Underfloor heating in all en-suites</div>
-          <div class="amenity"><div class="icon">&#128758;</div> Direct lake access &amp; kayaks</div>
-          <div class="amenity"><div class="icon">&#128641;</div> Helipad (pre-approved, heli-ski transfers)</div>
-        </div>
-      </div>
-
-      <!-- VERIFIED REVIEWS -->
-      <div class="listing-section">
-        <div class="accuracy-header">
-          <div class="accuracy-ring" style="background: conic-gradient(var(--accent) 0% 97%, var(--gray-200) 97% 100%);">
-            <div class="accuracy-ring-inner">97%</div>
-          </div>
-          <div class="accuracy-info">
-            <h2>Listing Accuracy &middot; 68 Verified Check-ins</h2>
-            <div class="accuracy-sub">Based on structured guest checklists, not star ratings. Photo-verified stays only.</div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-author">
-            <div class="author-avatar">&#128105;</div>
-            <div>
-              <div class="author-name">Emma R. <span style="font-size:0.65rem; color: var(--accent-dark); font-weight:700;">&#128247; PHOTO VERIFIED</span></div>
-              <div class="review-date">January 2026 &middot; Escrow Protected Stay</div>
-            </div>
-          </div>
-          <div class="review-checklist">
-            <span class="check-tag">Amenities accurate</span>
-            <span class="check-tag">Location accurate</span>
-            <span class="check-tag">Photos match reality</span>
-            <span class="check-tag">Cleanliness confirmed</span>
-            <span class="check-tag">Host responsive</span>
-          </div>
-          <p class="review-text">
-            Genuinely one of the most beautiful places I've ever stayed. Woke up to mist rolling off the lake with the mountains behind it &mdash; every single morning. Tom arranged a heli-ski trip to the Harris Mountains for my husband and Aroha left us a welcome platter with local cheeses from Gibbston. The hot tub under the stars was the highlight. No surprise fees, no nonsense &mdash; just two lovely people sharing their incredible home.
-          </p>
-        </div>
-
-        <div class="review-card">
-          <div class="review-author">
-            <div class="author-avatar">&#128104;</div>
-            <div>
-              <div class="author-name">David &amp; Lin C. <span style="font-size:0.65rem; color: var(--accent-dark); font-weight:700;">&#128247; PHOTO VERIFIED</span></div>
-              <div class="review-date">November 2025 &middot; 2nd stay with this host</div>
-            </div>
-          </div>
-          <div class="review-checklist">
-            <span class="check-tag">Amenities accurate</span>
-            <span class="check-tag">Location accurate</span>
-            <span class="check-tag">Photos match reality</span>
-            <span class="check-tag">Cleanliness confirmed</span>
-            <span class="check-tag">Host responsive</span>
-          </div>
-          <p class="review-text">
-            Second time booking through StayDirect with Tom and Aroha. Brought the extended family this time &mdash; 10 of us &mdash; and the lodge handled it effortlessly. The kids loved the billiards room, adults loved the fireplace and Rippon wines. We saved over NZ$1,200 compared to what Booking quoted us for the same dates. The direct relationship makes everything better &mdash; Aroha even booked us a private wine tour in Cromwell.
-          </p>
-        </div>
-
-        <div class="review-card">
-          <div class="review-author">
-            <div class="author-avatar">&#128105;</div>
-            <div>
-              <div class="author-name">Hana W. <span style="font-size:0.65rem; color: var(--accent-dark); font-weight:700;">&#128247; PHOTO VERIFIED</span></div>
-              <div class="review-date">September 2025 &middot; Escrow Protected Stay</div>
-            </div>
-          </div>
-          <div class="review-checklist">
-            <span class="check-tag">Amenities accurate</span>
-            <span class="check-tag">Location accurate</span>
-            <span class="check-tag">Photos match reality</span>
-            <span class="check-tag neutral">Minor maintenance note</span>
-            <span class="check-tag">Host responsive</span>
-          </div>
-          <p class="review-text">
-            Stunning property. The Roys Peak track is basically on the doorstep. One of the bathroom underfloor heaters wasn't working in suite 4 &mdash; messaged Tom directly and he had a sparky out within two hours. That kind of responsiveness is why we'll never go back to faceless platforms. Everything else was absolutely perfect.
-          </p>
-          <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-dark); font-style: italic;">
-            &#128172; 48-Hour Resolution: Issue was resolved privately before this review went public. Guest updated their checklist after fix.
-          </p>
-        </div>
-      </div>
-
-      <!-- LOCATION -->
-      <div class="listing-section">
-        <h2>Location</h2>
-        <p>Glendhu Bay, Wanaka, Otago, New Zealand. 15 minutes' drive to Wanaka township. 5 minutes to Roys Peak trailhead. 35 minutes to Cardrona Alpine Resort. 15 minutes to Treble Cone ski area. 10 minutes to Rippon Vineyard. 1 hour to Queenstown. 1 hour to Queenstown Airport (ZQN).</p>
-        <div class="map-embed">
-          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=168.95%2C-44.72%2C169.15%2C-44.64&layer=mapnik&marker=-44.68%2C169.05" width="100%" height="100%" style="border:0;" loading="lazy" title="Map showing Glendhu Bay, Wanaka, New Zealand"></iframe>
-        </div>
-      </div>
-
-      <!-- HOUSE RULES -->
-      <div class="listing-section">
-        <h2>House Rules</h2>
-        <p>Check-in: 3:00 PM &mdash; Check-out: 10:00 AM<br>
-        Shoes off indoors (Kiwi custom &mdash; we provide slippers). No smoking anywhere on the property (Smokefree Environments Act). No pets. Quiet hours after 10:00 PM (rural setting). Maximum 12 overnight guests. Shower before using the hot tub, no glassware in the spa area. Respect native bush and birdlife on the grounds. Separate recycling per Queenstown Lakes District Council guidelines.</p>
-        <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray-400); font-style: italic;">
-          These rules are set by the property owners &mdash; not by the platform. Direct owners, direct standards.
-        </p>
-      </div>
-
-      <!-- CANCELLATION -->
-      <div class="listing-section">
-        <h2>Cancellation Policy</h2>
-        <p><strong>Flexible &mdash; set by Tom &amp; Aroha:</strong> Full refund if cancelled 21+ days before check-in. 50% refund if cancelled 10&ndash;21 days before. No refund within 10 days. Peak season (20 Dec &ndash; 10 Jan) requires 30 days' notice for full refund.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--gray-400); font-style: italic;">
-          On StayDirect, hosts set their own cancellation terms. No platform override.
-        </p>
-      </div>
+      <div class="listing-header" id="listingHeader"></div>
+      <div class="listing-specs" id="listingSpecs"></div>
+      <div class="host-profile" id="hostProfile"></div>
+      <div class="trust-score-card" id="trustScore"></div>
+      <div class="listing-section" id="allPhotosSection"></div>
+      <div class="listing-section" id="descriptionSection"></div>
+      <div class="listing-section" id="amenitiesSection"></div>
+      <div class="listing-section" id="reviewsSection"></div>
+      <div class="listing-section" id="locationSection"></div>
+      <div class="listing-section" id="rulesSection"></div>
+      <div class="listing-section" id="cancellationSection"></div>
     </div>
 
     <!-- RIGHT COLUMN: BOOKING CARD -->
     <div>
-      <div class="booking-card">
-        <div class="booking-price-row">
-          <div class="booking-price">$1,200 <span class="period">/night</span></div>
-          <div class="no-fee-badge">0% Service Fee</div>
-        </div>
-
-        <!-- Date Picker -->
-        <div class="date-picker">
-          <div class="date-picker-row">
-            <div class="date-field">
-              <div class="label">Check-in</div>
-              <div class="value">Jul 10, 2026</div>
-            </div>
-            <div class="date-field">
-              <div class="label">Checkout</div>
-              <div class="value">Jul 15, 2026</div>
-            </div>
-          </div>
-          <div class="guest-field">
-            <div class="label">Guests</div>
-            <div class="value">8 guests</div>
-          </div>
-        </div>
-
-        <!-- ESCROW TOGGLE -->
-        <div class="escrow-toggle active" id="escrowToggle">
-          <div class="escrow-toggle-header">
-            <div class="escrow-toggle-left">
-              <div class="escrow-icon">&#128274;</div>
-              <div>
-                <h4>Escrow Protection</h4>
-                <p>1.5% &middot; Held until check-in</p>
-              </div>
-            </div>
-            <label class="toggle-switch">
-              <input type="checkbox" id="escrowCheck" checked>
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="escrow-detail">
-            Your payment is held in a secure escrow account. Funds are released to the host only after you arrive and confirm check-in. If the listing doesn't match the description, you're fully protected.
-            <div class="photo-verify-section">
-              <div class="photo-verify-row">
-                <div class="photo-verify-icon">&#128247;</div>
-                <div class="photo-verify-text">
-                  <strong>Photo verification required at release.</strong> Upload 1 photo of the main living area to confirm the property matches the listing. This protects you and future guests.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- COST BREAKDOWN -->
-        <div class="cost-breakdown" id="costBreakdown">
-          <div class="cost-row">
-            <span class="label">$1,200 x 5 nights</span>
-            <span class="value">$6,000</span>
-          </div>
-          <div class="cost-row">
-            <span class="label">Cleaning fee</span>
-            <span class="value">$350</span>
-          </div>
-          <div class="cost-row">
-            <span class="label">Service fee</span>
-            <span class="value green">$0</span>
-          </div>
-          <div class="cost-row" id="escrowRow">
-            <span class="label">Escrow protection (1.5%)</span>
-            <span class="value" id="escrowAmount">$95.25</span>
-          </div>
-          <div class="cost-row total">
-            <span class="label">Total</span>
-            <span class="value" id="totalAmount">$6,445.25</span>
-          </div>
-          <div class="cost-row savings">
-            <span class="label">You save vs. competitors</span>
-            <span class="value" id="savingsAmount">$856.75</span>
-          </div>
-        </div>
-
-        <!-- BOOK BUTTON -->
-        <button class="book-btn" id="bookBtn">
-          Direct Book <span class="arrow">&rarr;</span>
-        </button>
-
-        <p class="booking-note">
-          <strong>Direct booking.</strong> You'll communicate with Tom &amp; Aroha directly. No middleman.
-        </p>
-
-        <!-- COMPETITOR COMPARISON -->
-        <div class="comparison-banner">
-          <h4>This stay on other platforms</h4>
-          <div class="comparison-row">
-            <span class="platform">Competitor A (with fees)</span>
-            <span class="price theirs">$7,302</span>
-          </div>
-          <div class="comparison-row">
-            <span class="platform">Competitor B (with fees)</span>
-            <span class="price theirs">$7,188</span>
-          </div>
-          <div class="comparison-row">
-            <span class="platform" style="font-weight: 600; color: var(--accent-dark);">StayDirect</span>
-            <span class="price ours" id="comparisonOurs">$6,445.25</span>
-          </div>
-        </div>
-      </div>
+      <div class="booking-card" id="bookingCard"></div>
     </div>
   </div>
 
@@ -1421,55 +1119,314 @@
   </footer>
 
   <script>
-    // ───── ESCROW TOGGLE ─────
-    const escrowToggle = document.getElementById('escrowToggle');
-    const escrowCheck = document.getElementById('escrowCheck');
-    const escrowRow = document.getElementById('escrowRow');
-    const escrowAmount = document.getElementById('escrowAmount');
-    const totalAmount = document.getElementById('totalAmount');
-    const savingsAmount = document.getElementById('savingsAmount');
-    const comparisonOurs = document.getElementById('comparisonOurs');
-
-    const baseNightly = 1200;
-    const nights = 5;
-    const cleaning = 350;
-    const subtotal = (baseNightly * nights) + cleaning;
-    const escrowRate = 0.015;
-    const competitorPrice = 7302;
-
-    function updateBooking() {
-      const escrowOn = escrowCheck.checked;
-      const escrow = escrowOn ? subtotal * escrowRate : 0;
-      const total = subtotal + escrow;
-      const savings = competitorPrice - total;
-
-      escrowToggle.classList.toggle('active', escrowOn);
-      escrowRow.style.display = escrowOn ? 'flex' : 'none';
-      escrowAmount.textContent = '$' + escrow.toFixed(2);
-      totalAmount.textContent = '$' + total.toFixed(2);
-      savingsAmount.textContent = '$' + savings.toFixed(2);
-      comparisonOurs.textContent = '$' + total.toFixed(2);
+    // ───── GOOGLE DRIVE URL CONVERTER ─────
+    function convertImageUrl(url) {
+      if (!url) return '';
+      // Convert Google Drive sharing URLs to direct image URLs
+      // Formats: /file/d/ID/view, /open?id=ID, id=ID
+      const fileMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (fileMatch) return 'https://drive.google.com/thumbnail?id=' + fileMatch[1] + '&sz=w1200';
+      const idMatch = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (idMatch) return 'https://drive.google.com/thumbnail?id=' + idMatch[1] + '&sz=w1200';
+      return url;
     }
 
-    escrowCheck.addEventListener('change', updateBooking);
-    escrowToggle.addEventListener('click', function(e) {
-      if (e.target.closest('.toggle-switch')) return;
-      escrowCheck.checked = !escrowCheck.checked;
+    // ───── AMENITY ICON MAP ─────
+    const amenityIcons = {
+      'hot tub': '&#9832;', 'spa': '&#9832;', 'jacuzzi': '&#9832;',
+      'fireplace': '&#128293;', 'fire': '&#128293;',
+      'kitchen': '&#127859;', 'chef': '&#127859;', 'cooking': '&#127859;',
+      'bar': '&#127863;', 'wine': '&#127863;', 'cellar': '&#127863;',
+      'wifi': '&#128246;', 'internet': '&#128246;', 'tv': '&#128246;', 'sky': '&#128246;',
+      'game': '&#127921;', 'billiard': '&#127921;', 'snooker': '&#127921;', 'pool table': '&#127921;',
+      'ski': '&#9968;', 'snow': '&#9968;',
+      'parking': '&#128663;', 'garage': '&#128663;', 'car': '&#128663;',
+      'bbq': '&#127860;', 'grill': '&#127860;', 'deck': '&#127860;', 'outdoor': '&#127860;',
+      'heat': '&#128716;', 'heating': '&#128716;', 'warm': '&#128716;', 'air con': '&#128716;',
+      'lake': '&#128758;', 'kayak': '&#128758;', 'beach': '&#128758;', 'water': '&#128758;', 'pool': '&#128758;', 'swim': '&#128758;',
+      'heli': '&#128641;', 'helicopter': '&#128641;',
+      'washer': '&#128084;', 'laundry': '&#128084;', 'dryer': '&#128084;',
+      'pet': '&#128054;', 'dog': '&#128054;',
+      'garden': '&#127793;', 'lawn': '&#127793;',
+      'view': '&#127748;', 'mountain': '&#127748;', 'ocean': '&#127748;',
+      'bed': '&#128719;', 'linen': '&#128719;',
+      'bath': '&#128705;', 'towel': '&#128705;', 'shower': '&#128705;',
+      'coffee': '&#9749;', 'tea': '&#9749;',
+    };
+
+    function getAmenityIcon(amenity) {
+      const lower = amenity.toLowerCase();
+      for (const [keyword, icon] of Object.entries(amenityIcons)) {
+        if (lower.includes(keyword)) return icon;
+      }
+      return '&#10003;';
+    }
+
+    // ───── ESCAPE HTML ─────
+    function esc(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // ───── LOAD & RENDER ─────
+    const params = new URLSearchParams(window.location.search);
+    const propertyId = params.get('id') || 'whare-tui';
+
+    fetch('properties/' + encodeURIComponent(propertyId) + '.json')
+      .then(r => { if (!r.ok) throw new Error('Property not found'); return r.json(); })
+      .then(renderListing)
+      .catch(err => {
+        document.getElementById('gallery').innerHTML = '';
+        document.querySelector('.listing-details').innerHTML =
+          '<div style="padding:4rem 2rem;text-align:center;"><h1 style="font-size:1.5rem;margin-bottom:1rem;">Property Not Found</h1><p style="color:var(--gray-500);">We couldn\'t load this listing. Check the URL and try again.</p><a href="index.html" class="btn btn-primary" style="margin-top:1.5rem;">Back to Home</a></div>';
+        document.getElementById('bookingCard').style.display = 'none';
+      });
+
+    function renderListing(d) {
+      const p = d.property;
+      const h = d.host;
+      const pr = d.pricing;
+      const imgs = d.images;
+      const loc = p.location;
+
+      // Page title
+      document.title = esc(p.name) + ' — StayDirect Listing';
+
+      // ─── NORMALIZE IMAGES (support old object format and new array format) ───
+      let allPhotos = [];
+      if (imgs.photos && Array.isArray(imgs.photos)) {
+        allPhotos = imgs.photos.map(p => ({ url: convertImageUrl(p.url), label: p.label || '' }));
+      } else {
+        const imageKeys = ['main', 'interior', 'bedroom', 'outdoor', 'extra'];
+        const defaultLabels = ['Exterior', 'Interior', 'Bedroom', 'Outdoor', 'View'];
+        imageKeys.forEach((key, i) => {
+          if (imgs[key]) allPhotos.push({ url: convertImageUrl(imgs[key]), label: defaultLabels[i] });
+        });
+      }
+
+      // ─── HERO GALLERY (first 5 images) ───
+      let galleryHtml = '';
+      allPhotos.slice(0, 5).forEach((photo, i) => {
+        galleryHtml += '<div class="gallery-img">';
+        galleryHtml += '<img src="' + esc(photo.url) + '" alt="' + esc(photo.label || p.name) + '">';
+        if (i === 0) galleryHtml += '<div class="gallery-badge"><span class="dot"></span>Direct Listing</div>';
+        galleryHtml += '</div>';
+      });
+      document.getElementById('gallery').innerHTML = galleryHtml;
+
+      // ─── HEADER ───
+      const totalStays = h.totalStays || 0;
+      document.getElementById('listingHeader').innerHTML =
+        '<div>' +
+        '<h1>' + esc(p.name) + ' &mdash; ' + esc(p.tagline) + '</h1>' +
+        '<div class="listing-meta">' +
+        '<span class="rating" style="color:var(--accent-dark);">New Listing</span>' +
+        '<span>' + esc(loc.area) + ', ' + esc(loc.town) + ', ' + esc(loc.region) + ', ' + esc(loc.country) + '</span>' +
+        '</div></div>' +
+        '<div class="direct-badge">Verified Direct Owner</div>';
+
+      // ─── SPECS ───
+      document.getElementById('listingSpecs').innerHTML =
+        '<div class="spec"><span class="label">Guests</span><span class="value">' + p.maxGuests + '</span></div>' +
+        '<div class="spec"><span class="label">Bedrooms</span><span class="value">' + p.bedrooms + '</span></div>' +
+        '<div class="spec"><span class="label">Bathrooms</span><span class="value">' + p.bathrooms + '</span></div>' +
+        '<div class="spec"><span class="label">Type</span><span class="value">' + esc(p.type) + '</span></div>' +
+        '<div class="spec"><span class="label">Min Stay</span><span class="value">' + p.minStay + ' nights</span></div>';
+
+      // ─── HOST ───
+      const firstName = esc(h.names.split(' ')[0]);
+      let hostBadges = '<span class="host-badge owner">Verified Direct Owner</span>';
+      if (totalStays >= 50) hostBadges += '<span class="veteran-badge">&#127942; Verified Veteran Host &middot; ' + totalStays + '+ stays</span>';
+      hostBadges += '<span class="host-badge">Responds in ' + esc(h.responseTime) + '</span>';
+
+      document.getElementById('hostProfile').innerHTML =
+        '<div class="host-avatar">&#129489;<div class="verified-check">&#10003;</div></div>' +
+        '<div class="host-info">' +
+        '<h3>' + esc(h.names) + '</h3>' +
+        '<div class="host-badges">' + hostBadges + '</div>' +
+        '<p>' + esc(h.bio) + '</p>' +
+        '<p class="host-contact-hint">Book directly and communicate with ' + esc(h.names) + ' throughout your stay.</p>' +
+        '</div>';
+
+      // ─── TRUST SCORE (for new listings, show placeholder) ───
+      if (totalStays > 0) {
+        document.getElementById('trustScore').innerHTML =
+          '<div class="trust-score-header"><h2>Trust Score</h2><div class="trust-score-badge">&#128737; New</div></div>' +
+          '<div style="text-align:center;padding:1.5rem;color:var(--gray-400);font-size:0.9rem;">Trust score builds as guests complete verified check-ins.</div>';
+      } else {
+        document.getElementById('trustScore').innerHTML =
+          '<div class="trust-score-header"><h2>Trust Score</h2><div class="trust-score-badge">&#128737; New</div></div>' +
+          '<div style="text-align:center;padding:1.5rem;color:var(--gray-400);font-size:0.9rem;">Trust score builds as guests complete verified check-ins. This is a new listing.</div>';
+      }
+
+      // ─── ALL PHOTOS (with labels) ───
+      if (allPhotos.length > 0) {
+        let photosHtml = '<h2>All Photos (' + allPhotos.length + ')</h2>';
+        photosHtml += '<div class="all-photos-grid">';
+        allPhotos.forEach(photo => {
+          photosHtml += '<div class="photo-card">';
+          photosHtml += '<img src="' + esc(photo.url) + '" alt="' + esc(photo.label) + '" loading="lazy">';
+          if (photo.label) photosHtml += '<div class="photo-label">' + esc(photo.label) + '</div>';
+          photosHtml += '</div>';
+        });
+        photosHtml += '</div>';
+        document.getElementById('allPhotosSection').innerHTML = photosHtml;
+      }
+
+      // ─── DESCRIPTION ───
+      let descHtml = '<h2>About This Property</h2>';
+      d.description.forEach((para, i) => {
+        descHtml += '<p' + (i > 0 ? ' style="margin-top:0.75rem;"' : '') + '>' + esc(para) + '</p>';
+      });
+      document.getElementById('descriptionSection').innerHTML = descHtml;
+
+      // ─── AMENITIES ───
+      let amenHtml = '<h2>Amenities</h2><div class="amenities-grid">';
+      d.amenities.forEach(a => {
+        amenHtml += '<div class="amenity"><div class="icon">' + getAmenityIcon(a) + '</div> ' + esc(a) + '</div>';
+      });
+      amenHtml += '</div>';
+      document.getElementById('amenitiesSection').innerHTML = amenHtml;
+
+      // ─── REVIEWS ───
+      if (d.reviews && d.reviews.length > 0) {
+        let revHtml = '<div class="accuracy-header">' +
+          '<div class="accuracy-ring"><div class="accuracy-ring-inner">New</div></div>' +
+          '<div class="accuracy-info"><h2>Verified Check-ins</h2>' +
+          '<div class="accuracy-sub">Based on structured guest checklists, not star ratings.</div></div></div>';
+
+        d.reviews.forEach(r => {
+          let tags = '';
+          (r.checklist || []).forEach(t => { tags += '<span class="check-tag">' + esc(t) + '</span>'; });
+          (r.neutralTags || []).forEach(t => { tags += '<span class="check-tag neutral">' + esc(t) + '</span>'; });
+
+          revHtml += '<div class="review-card">' +
+            '<div class="review-author"><div class="author-avatar">&#128100;</div><div>' +
+            '<div class="author-name">' + esc(r.name) + (r.photoVerified ? ' <span style="font-size:0.65rem;color:var(--accent-dark);font-weight:700;">&#128247; PHOTO VERIFIED</span>' : '') + '</div>' +
+            '<div class="review-date">' + esc(r.date) + (r.note ? ' &middot; ' + esc(r.note) : '') + '</div>' +
+            '</div></div>' +
+            '<div class="review-checklist">' + tags + '</div>' +
+            '<p class="review-text">' + esc(r.text) + '</p>';
+
+          if (r.resolution) {
+            revHtml += '<p style="margin-top:0.5rem;font-size:0.75rem;color:var(--accent-dark);font-style:italic;">&#128172; 48-Hour Resolution: ' + esc(r.resolution) + '</p>';
+          }
+          revHtml += '</div>';
+        });
+        document.getElementById('reviewsSection').innerHTML = revHtml;
+      } else {
+        document.getElementById('reviewsSection').innerHTML =
+          '<h2>Reviews</h2><p style="color:var(--gray-400);font-style:italic;">No reviews yet. Be the first guest to stay here!</p>';
+      }
+
+      // ─── LOCATION ───
+      const lat = loc.latitude;
+      const lng = loc.longitude;
+      const bbox = (lng - 0.1) + '%2C' + (lat - 0.04) + '%2C' + (lng + 0.1) + '%2C' + (lat + 0.04);
+      document.getElementById('locationSection').innerHTML =
+        '<h2>Location</h2>' +
+        '<p>' + esc(loc.area) + ', ' + esc(loc.town) + ', ' + esc(loc.region) + ', ' + esc(loc.country) + '. ' + esc(p.nearbyDistances) + '</p>' +
+        '<div class="map-embed"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=' + bbox + '&layer=mapnik&marker=' + lat + '%2C' + lng + '" width="100%" height="100%" style="border:0;" loading="lazy" title="Map"></iframe></div>';
+
+      // ─── HOUSE RULES ───
+      const rules = d.houseRules;
+      document.getElementById('rulesSection').innerHTML =
+        '<h2>House Rules</h2>' +
+        '<p>Check-in: ' + esc(rules.checkIn) + ' &mdash; Check-out: ' + esc(rules.checkOut) + '<br>' + esc(rules.rules) + '</p>' +
+        '<p style="margin-top:0.75rem;font-size:0.8rem;color:var(--gray-400);font-style:italic;">These rules are set by the property owners &mdash; not by the platform. Direct owners, direct standards.</p>';
+
+      // ─── CANCELLATION ───
+      document.getElementById('cancellationSection').innerHTML =
+        '<h2>Cancellation Policy</h2>' +
+        '<p><strong>Set by ' + esc(h.names) + ':</strong> ' + esc(d.cancellation) + '</p>' +
+        '<p style="margin-top:0.5rem;font-size:0.8rem;color:var(--gray-400);font-style:italic;">On StayDirect, hosts set their own cancellation terms. No platform override.</p>';
+
+      // ─── BOOKING CARD ───
+      const nightlyRate = pr.nightlyRate;
+      const cleaningFee = pr.cleaningFee;
+      const nights = p.minStay;
+      const subtotal = (nightlyRate * nights) + cleaningFee;
+      const escrowRate = 0.015;
+      const competitorMarkup = 1.15;
+      const competitorPrice = Math.round(subtotal * competitorMarkup);
+
+      document.getElementById('bookingCard').innerHTML =
+        '<div class="booking-price-row">' +
+        '<div class="booking-price">$' + nightlyRate.toLocaleString() + ' <span class="period">/night</span></div>' +
+        '<div class="no-fee-badge">0% Service Fee</div></div>' +
+
+        '<div class="date-picker"><div class="date-picker-row">' +
+        '<div class="date-field"><div class="label">Check-in</div><div class="value">Select date</div></div>' +
+        '<div class="date-field"><div class="label">Checkout</div><div class="value">Select date</div></div>' +
+        '</div><div class="guest-field"><div class="label">Guests</div><div class="value">1 guest</div></div></div>' +
+
+        '<div class="escrow-toggle active" id="escrowToggle">' +
+        '<div class="escrow-toggle-header"><div class="escrow-toggle-left">' +
+        '<div class="escrow-icon">&#128274;</div><div><h4>Escrow Protection</h4><p>1.5% &middot; Held until check-in</p></div></div>' +
+        '<label class="toggle-switch"><input type="checkbox" id="escrowCheck" checked><span class="toggle-slider"></span></label></div>' +
+        '<div class="escrow-detail">Your payment is held in a secure escrow account. Funds are released to the host only after you arrive and confirm check-in. If the listing doesn\'t match the description, you\'re fully protected.' +
+        '<div class="photo-verify-section"><div class="photo-verify-row"><div class="photo-verify-icon">&#128247;</div>' +
+        '<div class="photo-verify-text"><strong>Photo verification required at release.</strong> Upload 1 photo of the main living area to confirm the property matches the listing.</div></div></div></div></div>' +
+
+        '<div class="cost-breakdown" id="costBreakdown">' +
+        '<div class="cost-row"><span class="label">$' + nightlyRate.toLocaleString() + ' x ' + nights + ' nights</span><span class="value">$' + (nightlyRate * nights).toLocaleString() + '</span></div>' +
+        '<div class="cost-row"><span class="label">Cleaning fee</span><span class="value">$' + cleaningFee.toLocaleString() + '</span></div>' +
+        '<div class="cost-row"><span class="label">Service fee</span><span class="value green">$0</span></div>' +
+        '<div class="cost-row" id="escrowRow"><span class="label">Escrow protection (1.5%)</span><span class="value" id="escrowAmount"></span></div>' +
+        '<div class="cost-row total"><span class="label">Total</span><span class="value" id="totalAmount"></span></div>' +
+        '<div class="cost-row savings"><span class="label">You save vs. competitors</span><span class="value" id="savingsAmount"></span></div></div>' +
+
+        '<button class="book-btn" id="bookBtn">Direct Book <span class="arrow">&rarr;</span></button>' +
+        '<p class="booking-note"><strong>Direct booking.</strong> You\'ll communicate with ' + esc(h.names) + ' directly. No middleman.</p>' +
+
+        '<div class="comparison-banner"><h4>This stay on other platforms</h4>' +
+        '<div class="comparison-row"><span class="platform">Competitor A (with fees)</span><span class="price theirs">$' + competitorPrice.toLocaleString() + '</span></div>' +
+        '<div class="comparison-row"><span class="platform">Competitor B (with fees)</span><span class="price theirs">$' + Math.round(subtotal * 1.13).toLocaleString() + '</span></div>' +
+        '<div class="comparison-row"><span class="platform" style="font-weight:600;color:var(--accent-dark);">StayDirect</span><span class="price ours" id="comparisonOurs"></span></div></div>';
+
+      // ─── ESCROW TOGGLE LOGIC ───
+      const escrowToggle = document.getElementById('escrowToggle');
+      const escrowCheck = document.getElementById('escrowCheck');
+      const escrowRow = document.getElementById('escrowRow');
+      const escrowAmountEl = document.getElementById('escrowAmount');
+      const totalAmountEl = document.getElementById('totalAmount');
+      const savingsAmountEl = document.getElementById('savingsAmount');
+      const comparisonOursEl = document.getElementById('comparisonOurs');
+
+      function updateBooking() {
+        const escrowOn = escrowCheck.checked;
+        const escrow = escrowOn ? subtotal * escrowRate : 0;
+        const total = subtotal + escrow;
+        const savings = competitorPrice - total;
+
+        escrowToggle.classList.toggle('active', escrowOn);
+        escrowRow.style.display = escrowOn ? 'flex' : 'none';
+        escrowAmountEl.textContent = '$' + escrow.toFixed(2);
+        totalAmountEl.textContent = '$' + total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        savingsAmountEl.textContent = '$' + savings.toFixed(2);
+        comparisonOursEl.textContent = '$' + total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      }
+
+      escrowCheck.addEventListener('change', updateBooking);
+      escrowToggle.addEventListener('click', function(e) {
+        if (e.target.closest('.toggle-switch')) return;
+        escrowCheck.checked = !escrowCheck.checked;
+        updateBooking();
+      });
+
       updateBooking();
-    });
 
-    // Init
-    updateBooking();
-
-    // ───── BOOK BUTTON ─────
-    document.getElementById('bookBtn').addEventListener('click', function() {
-      this.textContent = 'Booking Confirmed!';
-      this.style.background = '#10b981';
-      setTimeout(() => {
-        this.innerHTML = 'Direct Book <span class="arrow">&rarr;</span>';
-        this.style.background = '';
-      }, 2000);
-    });
+      // ─── BOOK BUTTON ───
+      document.getElementById('bookBtn').addEventListener('click', function() {
+        this.textContent = 'Booking Confirmed!';
+        this.style.background = '#10b981';
+        setTimeout(() => {
+          this.innerHTML = 'Direct Book <span class="arrow">&rarr;</span>';
+          this.style.background = '';
+        }, 2000);
+      });
+    }
   </script>
 
 </body>

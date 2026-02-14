@@ -1,0 +1,76 @@
+{
+  "_instructions": "Fill in this template with your property details. For images, upload photos to Google Drive, right-click > Share > 'Anyone with the link', then paste the sharing link below. We'll convert it automatically. Save this file as your-property-name.json and send it back to us.",
+
+  "property": {
+    "name": "Your Property Name",
+    "tagline": "Short tagline e.g. Lakefront Retreat, Mountain Hideaway, Beachfront Bach",
+    "location": {
+      "area": "e.g. Glendhu Bay",
+      "town": "e.g. Wanaka",
+      "region": "e.g. Otago",
+      "country": "New Zealand",
+      "latitude": -44.68,
+      "longitude": 169.05
+    },
+    "type": "Entire House",
+    "maxGuests": 8,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "minStay": 2,
+    "nearbyDistances": "e.g. 10 minutes to town centre. 30 minutes to ski field. 1 hour to airport."
+  },
+
+  "pricing": {
+    "nightlyRate": 350,
+    "cleaningFee": 150
+  },
+
+  "host": {
+    "names": "e.g. Sarah & Mike Thompson",
+    "bio": "Tell guests about yourself — who you are, your connection to the property, why you love it there. 2-3 sentences works well.",
+    "responseTime": "e.g. <1 hour, <30m, Same day",
+    "totalStays": 0
+  },
+
+  "description": [
+    "First paragraph: Describe what makes your property special — the views, the setting, the vibe. What will guests see when they arrive?",
+    "Second paragraph: Describe the interior — bedrooms, living spaces, kitchen, outdoor areas. What's the layout like?",
+    "Third paragraph (optional): Personal touch — why you love this place, what makes it unique, tips for guests."
+  ],
+
+  "amenities": [
+    "WiFi",
+    "Free parking",
+    "Kitchen",
+    "Washer & dryer",
+    "Heat pump / Air conditioning",
+    "BBQ",
+    "Outdoor seating area",
+    "TV / Smart TV"
+  ],
+
+  "images": {
+    "_instructions": "Add as many photos as you like. Upload each to Google Drive, share publicly ('Anyone with the link'), and paste the sharing URL. Give each photo a label so guests know what they're looking at. The first image is your hero/main shot.",
+    "photos": [
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Exterior" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Lounge" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Kitchen" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Bedroom 1" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Bedroom 2" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Bedroom 3" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Bathroom 1" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Bathroom 2" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Outdoor area" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "View" },
+      { "url": "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing", "label": "Things to do" }
+    ]
+  },
+
+  "houseRules": {
+    "checkIn": "3:00 PM",
+    "checkOut": "10:00 AM",
+    "rules": "e.g. No smoking. No pets. Quiet hours after 10pm. Maximum 8 guests."
+  },
+
+  "cancellation": "e.g. Full refund if cancelled 14+ days before check-in. 50% refund if cancelled 7-14 days before. No refund within 7 days."
+}
