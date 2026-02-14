@@ -11,21 +11,21 @@
     },
     "StayDirectSite": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://262665277195/ap-southeast-2",
+      "environment": "aws://262665277195/us-east-1",
       "properties": {
         "templateFile": "StayDirectSite.template.json",
         "terminationProtection": false,
         "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-deploy-role-262665277195-ap-southeast-2",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-cfn-exec-role-262665277195-ap-southeast-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-262665277195-ap-southeast-2/c4b7b114b365818bdbeeee7e29229d669562cfde36e278b0e012d0c493cc1fb0.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-deploy-role-262665277195-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-cfn-exec-role-262665277195-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-262665277195-us-east-1/e7efd989edf29af9a53a79813f12207fd1070e6f85d7849e9a0d8ab07f756993.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
           "StayDirectSite.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-lookup-role-262665277195-ap-southeast-2",
+          "arn": "arn:${AWS::Partition}:iam::262665277195:role/cdk-hnb659fds-lookup-role-262665277195-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         }
@@ -34,6 +34,12 @@
         "StayDirectSite.assets"
       ],
       "metadata": {
+        "/StayDirectSite/SiteCertificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteCertificate38C247F6"
+          }
+        ],
         "/StayDirectSite/SiteBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -68,6 +74,42 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/StayDirectSite/SiteDistribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteDistribution3FF9535D"
+          }
+        ],
+        "/StayDirectSite/SiteARecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteARecord078DA7E7"
+          }
+        ],
+        "/StayDirectSite/AWSCloudFrontPartitionHostedZoneIdMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWSCloudFrontPartitionHostedZoneIdMap"
+          }
+        ],
+        "/StayDirectSite/SiteAAAARecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteAAAARecord0A6D0F5B"
+          }
+        ],
+        "/StayDirectSite/WwwARecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WwwARecord21A54661"
+          }
+        ],
+        "/StayDirectSite/WwwAAAARecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WwwAAAARecordB7886117"
           }
         ],
         "/StayDirectSite/DeploySite/AwsCliLayer/Resource": [
@@ -114,6 +156,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "WebsiteURL"
+          }
+        ],
+        "/StayDirectSite/CloudFrontURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudFrontURL"
           }
         ],
         "/StayDirectSite/CDKMetadata/Default": [

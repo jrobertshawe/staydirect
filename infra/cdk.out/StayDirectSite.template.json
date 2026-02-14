@@ -1,5 +1,34 @@
 {
  "Resources": {
+  "SiteCertificate38C247F6": {
+   "Type": "AWS::CertificateManager::Certificate",
+   "Properties": {
+    "DomainName": "staydirect.co.nz",
+    "DomainValidationOptions": [
+     {
+      "DomainName": "staydirect.co.nz",
+      "HostedZoneId": "Z07499412HRFPQP3IQR01"
+     },
+     {
+      "DomainName": "www.staydirect.co.nz",
+      "HostedZoneId": "Z07499412HRFPQP3IQR01"
+     }
+    ],
+    "SubjectAlternativeNames": [
+     "www.staydirect.co.nz"
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "StayDirectSite/SiteCertificate"
+     }
+    ],
+    "ValidationMethod": "DNS"
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/SiteCertificate/Resource"
+   }
+  },
   "SiteBucket397A1860": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
@@ -157,7 +186,7 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-262665277195-ap-southeast-2",
+     "S3Bucket": "cdk-hnb659fds-assets-262665277195-us-east-1",
      "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
     },
     "Timeout": 900,
@@ -192,11 +221,181 @@
     "aws:asset:property": "Code"
    }
   },
+  "SiteDistribution3FF9535D": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "Aliases": [
+      "staydirect.co.nz",
+      "www.staydirect.co.nz"
+     ],
+     "DefaultCacheBehavior": {
+      "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+      "Compress": true,
+      "TargetOriginId": "StayDirectSiteSiteDistributionOrigin1B9CF0AE4",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "index.html",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "http-only",
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         2,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::GetAtt": [
+             "SiteBucket397A1860",
+             "WebsiteURL"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "StayDirectSiteSiteDistributionOrigin1B9CF0AE4"
+      }
+     ],
+     "ViewerCertificate": {
+      "AcmCertificateArn": {
+       "Ref": "SiteCertificate38C247F6"
+      },
+      "MinimumProtocolVersion": "TLSv1.2_2021",
+      "SslSupportMethod": "sni-only"
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/SiteDistribution/Resource"
+   }
+  },
+  "SiteARecord078DA7E7": {
+   "Type": "AWS::Route53::RecordSet",
+   "Properties": {
+    "AliasTarget": {
+     "DNSName": {
+      "Fn::GetAtt": [
+       "SiteDistribution3FF9535D",
+       "DomainName"
+      ]
+     },
+     "HostedZoneId": {
+      "Fn::FindInMap": [
+       "AWSCloudFrontPartitionHostedZoneIdMap",
+       {
+        "Ref": "AWS::Partition"
+       },
+       "zoneId"
+      ]
+     }
+    },
+    "HostedZoneId": "Z07499412HRFPQP3IQR01",
+    "Name": "staydirect.co.nz.",
+    "Type": "A"
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/SiteARecord/Resource"
+   }
+  },
+  "SiteAAAARecord0A6D0F5B": {
+   "Type": "AWS::Route53::RecordSet",
+   "Properties": {
+    "AliasTarget": {
+     "DNSName": {
+      "Fn::GetAtt": [
+       "SiteDistribution3FF9535D",
+       "DomainName"
+      ]
+     },
+     "HostedZoneId": {
+      "Fn::FindInMap": [
+       "AWSCloudFrontPartitionHostedZoneIdMap",
+       {
+        "Ref": "AWS::Partition"
+       },
+       "zoneId"
+      ]
+     }
+    },
+    "HostedZoneId": "Z07499412HRFPQP3IQR01",
+    "Name": "staydirect.co.nz.",
+    "Type": "AAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/SiteAAAARecord/Resource"
+   }
+  },
+  "WwwARecord21A54661": {
+   "Type": "AWS::Route53::RecordSet",
+   "Properties": {
+    "AliasTarget": {
+     "DNSName": {
+      "Fn::GetAtt": [
+       "SiteDistribution3FF9535D",
+       "DomainName"
+      ]
+     },
+     "HostedZoneId": {
+      "Fn::FindInMap": [
+       "AWSCloudFrontPartitionHostedZoneIdMap",
+       {
+        "Ref": "AWS::Partition"
+       },
+       "zoneId"
+      ]
+     }
+    },
+    "HostedZoneId": "Z07499412HRFPQP3IQR01",
+    "Name": "www.staydirect.co.nz.",
+    "Type": "A"
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/WwwARecord/Resource"
+   }
+  },
+  "WwwAAAARecordB7886117": {
+   "Type": "AWS::Route53::RecordSet",
+   "Properties": {
+    "AliasTarget": {
+     "DNSName": {
+      "Fn::GetAtt": [
+       "SiteDistribution3FF9535D",
+       "DomainName"
+      ]
+     },
+     "HostedZoneId": {
+      "Fn::FindInMap": [
+       "AWSCloudFrontPartitionHostedZoneIdMap",
+       {
+        "Ref": "AWS::Partition"
+       },
+       "zoneId"
+      ]
+     }
+    },
+    "HostedZoneId": "Z07499412HRFPQP3IQR01",
+    "Name": "www.staydirect.co.nz.",
+    "Type": "AAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "StayDirectSite/WwwAAAARecord/Resource"
+   }
+  },
   "DeploySiteAwsCliLayer88B0EBE2": {
    "Type": "AWS::Lambda::LayerVersion",
    "Properties": {
     "Content": {
-     "S3Bucket": "cdk-hnb659fds-assets-262665277195-ap-southeast-2",
+     "S3Bucket": "cdk-hnb659fds-assets-262665277195-us-east-1",
      "S3Key": "0cfdecad2260a3a84ad0c2d08a77e03c9d25e26c7b52f26b1e1faf97aef92f18.zip"
     },
     "Description": "/opt/awscli/aws"
@@ -218,16 +417,22 @@
      ]
     },
     "SourceBucketNames": [
-     "cdk-hnb659fds-assets-262665277195-ap-southeast-2"
+     "cdk-hnb659fds-assets-262665277195-us-east-1"
     ],
     "SourceObjectKeys": [
-     "1e1ec1d96c06278b30ec954fabd9bf4a6eec2d9b600fda9a9ca0768d9a74f3b4.zip"
+     "ee57ec4ad90d59b8cfc51111580f4e8f1d7784e3fa23f8d58de2f99054a07018.zip"
     ],
     "DestinationBucketName": {
      "Ref": "SiteBucket397A1860"
     },
     "WaitForDistributionInvalidation": true,
     "Prune": true,
+    "DistributionId": {
+     "Ref": "SiteDistribution3FF9535D"
+    },
+    "DistributionPaths": [
+     "/*"
+    ],
     "OutputObjectKeys": true
    },
    "UpdateReplacePolicy": "Delete",
@@ -291,7 +496,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":s3:::cdk-hnb659fds-assets-262665277195-ap-southeast-2"
+           ":s3:::cdk-hnb659fds-assets-262665277195-us-east-1"
           ]
          ]
         },
@@ -303,7 +508,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":s3:::cdk-hnb659fds-assets-262665277195-ap-southeast-2/*"
+           ":s3:::cdk-hnb659fds-assets-262665277195-us-east-1/*"
           ]
          ]
         }
@@ -345,6 +550,14 @@
          ]
         }
        ]
+      },
+      {
+       "Action": [
+        "cloudfront:GetInvalidation",
+        "cloudfront:CreateInvalidation"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
       }
      ],
      "Version": "2012-10-17"
@@ -364,7 +577,7 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-262665277195-ap-southeast-2",
+     "S3Bucket": "cdk-hnb659fds-assets-262665277195-us-east-1",
      "S3Key": "3423a042b818e31c1e34a19d6689ab2e5f9b70fcbe9e71df66f241b20a200bd9.zip"
     },
     "Environment": {
@@ -401,20 +614,42 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WPwWqEMBCGn2XvcdrVQulx19JToYtCr5KNo2SNyZJJViT47iVGXHr6//kmhG9yyIt3OB74RJloh0zJK4TacTEwPlETqIBw9mJAx8pOby3FxSgp5ife5jScOeHCqGhCi3dl5hG1g7T63AHjROgITjEWpvh4bTmEstPffEb7i5ak0ayWulfojP7yWrhI9lJ2O1yY5COEyiiMeM2nYmrLwkpPzowVkvFWpJd7/7e6WPOQLdp4CVsNa8d7qfvNs1HRseETCSXhNFGp5Kod//zx7u7dwrRpEW708shf4fgBb4cbSZlZr50cEaqUf/RpwmCEAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VQTW/CMAz9LdxDNmDTtGMp2mnTUCvtikzqVoE0qRKHCkX571MaVtjpfdiWn73m680bXy1gdEvRnJdKHnmoCcSZVeiMtwIZjO4QBFqSrRRA2IOGDi0P5d1jZasfZGRuw8PWizNSKt1Yhr1RUlzv9k1nsQWHkQllfNNao4mHnXRk5dGTNDoNPerIrPGErxseigqFsU3qyKxGYgUAZJUSHUKDgzLXHjXxvG43GwycQ3K8SBCZgv7YAA9lqz/hivYHrUsBaqk7hWT0h9diijSTsp3NyCT0PFRGTZ+Z8H52ZjGy0jsy/fzoKfof/1faW3ORDdr0HTYlrAk6qbs08wXDkGiOfFAp7gFGJ5TkxehKJacLUuu3p8FTZNo0yE/u6bJ+5qt3/rI4OSmX1muSPfIq4y9vYsYVHAIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "StayDirectSite/CDKMetadata/Default"
    }
   }
  },
+ "Mappings": {
+  "AWSCloudFrontPartitionHostedZoneIdMap": {
+   "aws": {
+    "zoneId": "Z2FDTNDATAQYW2"
+   },
+   "aws-cn": {
+    "zoneId": "Z3RFFRIM2A3IF5"
+   }
+  }
+ },
  "Outputs": {
   "WebsiteURL": {
    "Description": "StayDirect website URL",
+   "Value": "https://staydirect.co.nz"
+  },
+  "CloudFrontURL": {
+   "Description": "CloudFront distribution URL",
    "Value": {
-    "Fn::GetAtt": [
-     "SiteBucket397A1860",
-     "WebsiteURL"
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "SiteDistribution3FF9535D",
+        "DomainName"
+       ]
+      }
+     ]
     ]
    }
   }

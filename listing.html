@@ -74,6 +74,19 @@
 
     .nav-brand span { color: var(--accent); }
 
+    .nav-brand .beta-tag {
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      vertical-align: super;
+      margin-left: 0.25rem;
+    }
+
     .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 
     .nav-links a {
@@ -1072,7 +1085,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-brand">Stay<span>Direct</span></a>
+    <a href="index.html" class="nav-brand">Stay<span>Direct</span> <span class="beta-tag">Beta</span></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="host.html#math">Compare Platforms</a>
